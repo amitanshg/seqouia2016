@@ -10,18 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jarvis.util.APIResponseParser;
+import com.jarvis.util.Constants;
 import com.jarvis.util.HttpUtility;
 
 /**
  * Servlet implementation class APIRequest
  */
-public class APIRequest extends HttpServlet {
+public class APIRequest extends HttpServlet implements Constants  {
 	private static final long serialVersionUID = 1L;
 	public static String requestApi(String q) throws UnsupportedEncodingException {
 		// test sending GET request
 		q = URLEncoder.encode(q, "UTF-8");
 		String allines = "";
-		String requestURL = "https://api.projectoxford.ai/luis/v1/application?id=e099b495-7002-453b-995a-cefd365c7100&subscription-key=59133f6acce54184a8e45eafcc037872&q="+q;
+		String requestURL = Constants.REQUEST_URL + q;
 		try {
 			HttpUtility.sendGetRequest(requestURL);
 			String[] response = HttpUtility.readMultipleLinesRespone();
