@@ -1,7 +1,6 @@
 package com.jarvis.util;
 import java.util.List;
 
-
 public class APIResponse {
 	private List<Entity> entities;
 	private List<Intent> intents;
@@ -23,6 +22,5 @@ public class APIResponse {
 	}
 	public void setQuery(String query) {
 		this.query = query;
-	}
-	
+	}	
 }
