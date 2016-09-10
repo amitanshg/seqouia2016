@@ -1,0 +1,11 @@
+http://stackoverflow.com/questions/17863086/how-to-get-started-with-google-custom-search-api
+http://www.basicsbehind.com/google-search-programmatically/
+
+API key:AIzaSyDBHj2fj7OTy4JM8WtaosPVO1GYlAX1Pf0
+Client ID:171202281844-qop3h56c50m4carkr6qnrablurjppr8t.apps.googleusercontent.com
+Client Secret:r3y3I65dU2tON1vFcgLMoJX2
+cx:014130208108474947322:vpddm6e5yp8
+
+
+
+http://www.bing.com/developers/s/APIBasics.html
