@@ -9,13 +9,16 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
 public class Mongo {
     static MongoClient conn = null;
 
     public Mongo() {
         if(conn == null) {
-            conn = new MongoClient("localhost", 27017);
+           // conn = new MongoClient("localhost", 27017);
+        	MongoClientURI uri = new MongoClientURI("mongodb://jarvis:123456@ds029476.mlab.com:29476/jarvis_sequoia");
+            conn = new MongoClient(uri);
         }
     }
 
@@ -63,7 +66,7 @@ public class Mongo {
 
 	    Mongo mongo = new Mongo();
 	    String userId = "123";
-	    String dbName = "user_data";
+	    String dbName = "jarvis_sequoia";
 	    HashMap<String, Object> userData = new HashMap<String, Object>();
 	    userData.put("a", "1");
 	    userData.put("b", "2");
