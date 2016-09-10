@@ -1,12 +1,16 @@
 package com.jarvis.util;
-import com.mongodb.*;
-import com.mongodb.util.JSON;
-import com.mongodb.MongoClient;
-import java.util.HashMap; 
-import org.json.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-class Mongo {
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+
+public class Mongo {
     static MongoClient conn = null;
 
     public Mongo() {

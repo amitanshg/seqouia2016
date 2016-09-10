@@ -36,4 +36,9 @@ public class Entity{
 	public void setScore(float score) {
 		this.score = score;
 	}
+	 @Override
+	    public String toString()
+	    {
+	        return "ClassPojo [recipeSourcesCount = "+entity+", Score = "+score+"]";
+	    }
 }

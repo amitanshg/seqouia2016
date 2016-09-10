@@ -47,9 +47,12 @@ public class CustomGoogleSearch {
 		return toSearch;
 	}
 
+
 	public static void main(String[] args) throws Exception {
+
 		String url = buildSearchString("Chairs", 1, 10);
 		String result = search(url);
 		System.out.println(result);
+
 	}
 }
