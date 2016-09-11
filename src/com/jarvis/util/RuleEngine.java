@@ -24,8 +24,9 @@ public class RuleEngine {
 	public static final String AffirmativeMessage = "Okay, I'm processing your request.";
 	public static final String NegativeMessage = "I need clear instructions for what to do";
 	public static final String NoneMessage = "What do you intend?";
-	public static final String GreetingMessage = "Should I take it as a feedback?";
+	public static final String GreetingMessage = "Greetings!! How can I help ?";
 	public static final String InformationMessage = "Stored.";
+	public static final String FeedBackMessage = "Should i take it as a feedback?";
 
 	public JSONObject evaluateResults(APIResponse apiresponse) {
 
@@ -45,7 +46,7 @@ public class RuleEngine {
 		String topIntent = ilist.get(0).getIntent();
 
 		response.put("intent", ilist.get(0).getIntent());
-		if (ilist.get(0).getScore() > 0.7
+		if (ilist.get(0).getScore() > 0.4
 				&& ilist.get(0).getIntent().equals("reqService")) {
 			response.put("serviceType", true);
 		} else if (ilist.get(0).getIntent().equals("information")) {
@@ -58,11 +59,13 @@ public class RuleEngine {
 			response.put("message", NoneMessage);
 		} else if (ilist.get(0).getIntent().equals("affirmative")) {
 			response.put("message", AffirmativeMessage);
+		} else if (ilist.get(0).getIntent().equals("feedback")) {
+			response.put("message", FeedBackMessage);
 		} else {
 			response.put("message", defaultMessage);
 		}
-		//System.out.println("RESPONSE MESSAGE  "+response.get("message"));
-		//response.put("message", defaultMessage);
+		// System.out.println("RESPONSE MESSAGE  "+response.get("message"));
+		// response.put("message", defaultMessage);
 		JSONArray queries = new JSONArray();
 		String query = "";
 		JSONArray entityArray = new JSONArray();
@@ -71,14 +74,14 @@ public class RuleEngine {
 		for (Iterator<Entity> iterator = elist.iterator(); iterator.hasNext();) {
 			System.out.println("###" + query + "###");
 			Entity entity = (Entity) iterator.next();
-			if(Arrays.asList(excludeEntities).contains(entity.getType())) {
+			if (Arrays.asList(excludeEntities).contains(entity.getType())) {
 				continue;
 			}
 			if (entity.getType().equals("serviceType")) {
-				
+
 				serviceTypeFound++;
 			}
-			if ( entity.getType().equals("serviceType")	&& serviceTypeFound >= 2) {
+			if (entity.getType().equals("serviceType") && serviceTypeFound >= 2) {
 				queries.put(query);
 				query = "";
 				serviceTypeFound = 1;
@@ -87,7 +90,7 @@ public class RuleEngine {
 			entityArray.put(entity.getEntity());
 
 		}
-		if(!query.equals("")) {
+		if (!query.equals("")) {
 			queries.put(query);
 		}
 		response.put("entities", entityArray);
