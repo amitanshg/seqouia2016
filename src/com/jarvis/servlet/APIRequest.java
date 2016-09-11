@@ -185,7 +185,7 @@ public class APIRequest extends HttpServlet implements Constants {
 			// return result.get("defaultMessage");
 		} else {
 			JSONArray queries = result.getJSONArray("queries");
-			finalMessage = "I understand you are requesting for a service.\n These are the service results\n";
+			finalMessage = "I understand you are requesting for a service.\n These are the service results based on the following inputs.\n";
 			for (int i = 0; i < queries.length(); i++) {
 				RootObject robject = BingRequest.requestBing(queries
 						.getString(i));
