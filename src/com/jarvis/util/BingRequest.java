@@ -29,7 +29,7 @@ public class BingRequest {
 			builder.setParameter("q", q);
 			builder.setParameter("count", "1");
 			builder.setParameter("offset", "0");
-			builder.setParameter("mkt", "en-us");	
+			builder.setParameter("mkt", "en-IN");	
 			builder.setParameter("safesearch", "Strict");
 		
 			URI uri = builder.build();

@@ -73,6 +73,7 @@ public class RuleEngine {
 				continue;
 			}
 			if (entity.getType().equals("serviceType")) {
+				
 				serviceTypeFound++;
 			}
 			if ( entity.getType().equals("serviceType")	&& serviceTypeFound >= 2) {
