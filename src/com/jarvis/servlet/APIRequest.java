@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -193,6 +194,11 @@ public class APIRequest extends HttpServlet implements Constants {
 				finalMessage += (displayurl + "\n"); 
 				displayUrls.put(displayurl);
 			}
+		}
+		
+		for (Iterator<Entity> iterator = elist.iterator(); iterator.hasNext();) {
+			Entity entity = (Entity) iterator.next();
+			finalMessage += ("\n" + entity.getEntity() + " " + entity.getType());
 		}
 		DBObject entityIntentData = new BasicDBObject();
 		Object[] obs = result.keySet().toArray();
