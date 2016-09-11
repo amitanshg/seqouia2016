@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -141,6 +143,7 @@ public class APIRequest extends HttpServlet implements Constants {
 	    while ((line = reader.readLine()) != null) {
 	        buffer.append(line);
 	    }
+	    
 	
 	    String q = buffer.toString();
 	    System.out.println("BEFORE PARSING POST: \n" + q);
@@ -162,9 +165,16 @@ public class APIRequest extends HttpServlet implements Constants {
 		APIResponse apiresponse = APIResponseParser.getResponseOnject(s);
 		RuleEngine re = new RuleEngine();
 		JSONObject result = re.evaluateResults(apiresponse);
-
+		
 		// TODO:parse the apiresponse
 		List<Entity> elist = apiresponse.getEntities();
+		System.out.println("Before:\n" + elist);
+		Collections.sort(elist, new Comparator<Entity>() {
+			@Override
+			public int compare(Entity a1, Entity a2) {
+				return a1.getScore() - a2.getScore() < 0 ? 1 : -1;
+			}
+		});
 		System.out.println("Before:\n" + elist);
 		String finalMessage = "";
 		JSONArray displayUrls = new JSONArray();
@@ -174,7 +184,7 @@ public class APIRequest extends HttpServlet implements Constants {
 			// return result.get("defaultMessage");
 		} else {
 			JSONArray queries = result.getJSONArray("queries");
-			finalMessage = "I understand you are requresting for a service. These are the service results\n";
+			finalMessage = "I understand you are requresting for a service.\n These are the service results\n";
 			for (int i = 0; i < queries.length(); i++) {
 				RootObject robject = BingRequest.requestBing(queries
 						.getString(i));
