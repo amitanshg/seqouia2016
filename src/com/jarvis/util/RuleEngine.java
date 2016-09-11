@@ -20,7 +20,7 @@ import org.json.JSONObject;
 public class RuleEngine {
 	public static final String[] excludeEntities = new String[] { "clientName",
 			"forWhoom", "phoneNumber" };
-	public static final String defaultMessage = "Hi, I am JARVIS";
+	public static final String defaultMessage = "Hi, I am JARVIS, I'm afraid. I don't understand, sorry!";
 	public static final String AffirmativeMessage = "Okay, I'm processing your request.";
 	public static final String NegativeMessage = "I need clear instructions for what to do";
 	public static final String NoneMessage = "What do you intend?";
@@ -45,7 +45,7 @@ public class RuleEngine {
 		String topIntent = ilist.get(0).getIntent();
 
 		response.put("intent", ilist.get(0).getIntent());
-		if (ilist.get(0).getScore() > 0.5
+		if (ilist.get(0).getScore() > 0.7
 				&& ilist.get(0).getIntent().equals("reqService")) {
 			response.put("serviceType", true);
 		} else if (ilist.get(0).getIntent().equals("information")) {
@@ -58,6 +58,8 @@ public class RuleEngine {
 			response.put("message", NoneMessage);
 		} else if (ilist.get(0).getIntent().equals("affirmative")) {
 			response.put("message", AffirmativeMessage);
+		} else {
+			response.put("message", defaultMessage);
 		}
 		//System.out.println("RESPONSE MESSAGE  "+response.get("message"));
 		//response.put("message", defaultMessage);
