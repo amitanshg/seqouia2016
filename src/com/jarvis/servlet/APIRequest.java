@@ -185,7 +185,7 @@ public class APIRequest extends HttpServlet implements Constants {
 			// return result.get("defaultMessage");
 		} else {
 			JSONArray queries = result.getJSONArray("queries");
-			finalMessage = "I understand you are requresting for a service.\n These are the service results\n";
+			finalMessage = "I understand you are requesting for a service.\n These are the service results\n";
 			for (int i = 0; i < queries.length(); i++) {
 				RootObject robject = BingRequest.requestBing(queries
 						.getString(i));
@@ -198,7 +198,7 @@ public class APIRequest extends HttpServlet implements Constants {
 		
 		for (Iterator<Entity> iterator = elist.iterator(); iterator.hasNext();) {
 			Entity entity = (Entity) iterator.next();
-			finalMessage += ("\n" + entity.getEntity() + " " + entity.getType());
+			finalMessage += (entity.getType() + " - " + entity.getEntity() + "\n");
 		}
 		DBObject entityIntentData = new BasicDBObject();
 		Object[] obs = result.keySet().toArray();
