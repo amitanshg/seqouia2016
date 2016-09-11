@@ -203,7 +203,7 @@ public class APIRequest extends HttpServlet implements Constants {
 		DBObject entityIntentData = new BasicDBObject();
 		Object[] obs = result.keySet().toArray();
 		for (int i = 0; i < obs.length; i++) {
-			System.out.println((String) obs[i] +  " -- " + obs[i].toString());
+			System.out.println((String) obs[i] +  " - " + obs[i].toString());
 			dbData.put((String) obs[i], result.get(obs[i].toString()));
 		}
 		dbData.put("display_urls", displayUrls);
